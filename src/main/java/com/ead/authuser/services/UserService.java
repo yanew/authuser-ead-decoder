@@ -7,7 +7,16 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UserService {
-    List<UserModel> findAll();
 
-    Optional<UserModel> findById(UUID userId);
+    public List<UserModel> findAll();
+
+    public Optional<UserModel> findById(UUID userId);
+
+    public void delete(UserModel userModel);
+
+	public void save(UserModel userModel);
+
+	public boolean existsByUsername(String username);
+
+	public boolean existsByEmail(String email);
 }
