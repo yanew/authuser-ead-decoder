@@ -1,5 +1,9 @@
 package com.ead.authuser.dtos;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -16,15 +20,23 @@ public class UserDto {
 		public static interface ImagePut{}
 	}
 	
+	@NotBlank(groups = UserView.RegistrationPost.class)
+	@Size(min=4, max=50)
 	@JsonView(UserView.RegistrationPost.class)
     private String username;
     
+	@NotBlank(groups = UserView.RegistrationPost.class)
+	@Email
 	@JsonView(UserView.RegistrationPost.class)
 	private String email;
 	
+	@NotBlank(groups = {UserView.RegistrationPost.class, UserView.PasswordPut.class})
+	@Size(min=6, max=20)
 	@JsonView({UserView.RegistrationPost.class, UserView.PasswordPut.class})
     private String password;
     
+	@NotBlank(groups = UserView.PasswordPut.class)
+	@Size(min=6, max=20)
 	@JsonView(UserView.PasswordPut.class)
 	private String oldPassword;
     
@@ -34,9 +46,11 @@ public class UserDto {
 	@JsonView({UserView.RegistrationPost.class, UserView.UserPut.class})
     private String phoneNumber;
 	
+	@Size(min=11, max=11)
 	@JsonView({UserView.RegistrationPost.class, UserView.UserPut.class})
     private String cpf;
 	
+	@NotBlank(groups = UserView.ImagePut.class)
 	@JsonView({UserView.ImagePut.class})
     private String imageUrl;
 	
