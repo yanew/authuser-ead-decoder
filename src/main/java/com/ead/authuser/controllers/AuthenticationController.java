@@ -34,10 +34,10 @@ public class AuthenticationController {
 												@JsonView(UserDto.UserView.RegistrationPost.class)
 												UserDto userDto){
 		if(userService.existsByUsername(userDto.getUsername())) {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("Este nome de usuário já foi cadastrado!");
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("Este nome de usuÃ¡rio jÃ¡ foi cadastrado!");
 		}
 		if(userService.existsByEmail(userDto.getEmail())) {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("Este email já foi cadastrado!");
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("Este email jÃ¡ foi cadastrado!");
 		}
 		
 		var userModel = new UserModel();

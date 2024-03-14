@@ -47,7 +47,7 @@ public class UserController {
     public ResponseEntity<Object> getOneUser(@PathVariable(value = "userId") UUID userId){
         Optional<UserModel> userModelOptional = userService.findById(userId);
         if(!userModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("UsuÃ¡rio nÃ£o encontrado!");
         }else{
             return ResponseEntity.status(HttpStatus.OK).body(userModelOptional.get());
         }
@@ -57,10 +57,10 @@ public class UserController {
     public ResponseEntity<Object> deleteUser(@PathVariable(value = "userId") UUID userId){
         Optional<UserModel> userModelOptional = userService.findById(userId);
         if(!userModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("UsuÃ¡rio nÃ£o encontrado!");
         }else{
             userService.delete(userModelOptional.get());
-            return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso!");
+            return ResponseEntity.status(HttpStatus.OK).body("UsuÃ¡rio deletado com sucesso!");
         }
     }
     
@@ -70,7 +70,7 @@ public class UserController {
     		@JsonView(UserDto.UserView.UserPut.class) UserDto userDto){
         Optional<UserModel> userModelOptional = userService.findById(userId);
         if(!userModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("UsuÃ¡rio nÃ£o encontrado!");
         }else{
         	var userModel = userModelOptional.get();
         	userModel.setFullName(userDto.getFullName());
@@ -79,7 +79,7 @@ public class UserController {
         	userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
         	
             userService.save(userModel);
-            return ResponseEntity.status(HttpStatus.OK).body("Usuário atualizado com sucesso!");
+            return ResponseEntity.status(HttpStatus.OK).body("UsuÃ¡rio atualizado com sucesso!");
         }
     }
 
@@ -89,20 +89,20 @@ public class UserController {
     		@JsonView(UserDto.UserView.PasswordPut.class) UserDto userDto){
         Optional<UserModel> userModelOptional = userService.findById(userId);
         if(!userModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("UsuÃ¡rio nÃ£o encontrado!");
         }else if(!userModelOptional.get().getPassword().equals(userDto.getOldPassword())) {
         	return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O campo 'Senha anterior' informa senha diferente da atual!");
         } else{
         	var userModel = userModelOptional.get();
         	
         	if(userModel.getPassword().equals(userDto.getPassword())) {
-        		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Você informou a mesma senha!");	
+        		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("VocÃª informou a mesma senha!");	
         	}else {
         		userModel.setPassword(userDto.getPassword());
             	userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
             	
                 userService.save(userModel);
-                return ResponseEntity.status(HttpStatus.OK).body("Usuário atualizado com sucesso!");	
+                return ResponseEntity.status(HttpStatus.OK).body("UsuÃ¡rio atualizado com sucesso!");	
         	}
         }
     }
@@ -113,7 +113,7 @@ public class UserController {
     		@JsonView(UserDto.UserView.ImagePut.class) UserDto userDto){
         Optional<UserModel> userModelOptional = userService.findById(userId);
         if(!userModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("UsuÃ¡rio nÃ£o encontrado!");
         }else{
         	var userModel = userModelOptional.get();
         	userModel.setImageUrl(userDto.getImageUrl());

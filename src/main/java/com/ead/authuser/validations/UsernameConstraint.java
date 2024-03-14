@@ -1,4 +1,4 @@
-package com.ead.authuser.validation;
+package com.ead.authuser.validations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -14,7 +14,7 @@ import javax.validation.Payload;
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UsernameConstraint {
-	String message() default "Username inválido!";
+	String message() default "Username invÃ¡lido!";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }
