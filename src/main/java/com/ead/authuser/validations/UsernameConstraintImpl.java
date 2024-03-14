@@ -3,14 +3,18 @@ package com.ead.authuser.validations;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class UsernameConstraintImpl implements ConstraintValidator<UsernameConstraint, String>{
+public class UsernameConstraintImpl implements ConstraintValidator<UsernameConstraint, String> {
 
-	@Override
-	public boolean isValid(String value, ConstraintValidatorContext context) {
-		if(value == null || value.trim().isEmpty() || value.contains(" ")) {
-			return false;
-		}
-		return true;
-	}
+    @Override
+    public void initialize(UsernameConstraint constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
 
+    @Override
+    public boolean isValid(String username, ConstraintValidatorContext constraintValidatorContext) {
+        if(username == null || username.trim().isEmpty() || username.contains(" ")){
+            return false;
+        }
+        return true;
+    }
 }
