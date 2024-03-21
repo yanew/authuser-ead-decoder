@@ -2,6 +2,7 @@ package com.ead.authuser.models;
 
 import com.ead.authuser.enums.UserStatus;
 import com.ead.authuser.enums.UserType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -42,8 +43,10 @@ public class UserModel implements Serializable {
     @Column
     private String imageUrl;
     @Column(nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")//Padrao 8601 - UTC
     private LocalDateTime creationDate;
     @Column(nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")//Padrao 8601 - UTC
     private LocalDateTime lastUpdateDate;
 
 }
