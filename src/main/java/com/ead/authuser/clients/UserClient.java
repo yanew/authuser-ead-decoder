@@ -43,7 +43,7 @@ public class UserClient {
 			searchResult = result.getBody().getContent();
 			log.debug("Response number of elements: {}", searchResult.size());
 		}catch(HttpStatusCodeException e ) {
-			log.error("Error request /coursed {}", e);
+			log.error("Error request /courses {}", e);
 		}
 		log.info("Ending request /courses userId {}", userId);
 		return new PageImpl<>(searchResult);
